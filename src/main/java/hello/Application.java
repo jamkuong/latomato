@@ -143,7 +143,7 @@ public class Application {
 
         System.out.println(getHighestState(arenaUpdate.arena.state, selfKey));
         if (me.wasHit) {
-            if (forwardX < 0 || forwardY < 0 || forwardY > arenaY || forwardX > arenaX || [forwardX][forwardY] != null){
+            if (forwardX < 0 || forwardY < 0 || forwardY >= arenaY || forwardX >= arenaX || [forwardX][forwardY] != null){
                 return "R";
             } else {
                 return "F";
@@ -151,7 +151,7 @@ public class Application {
         } else if (someoneExists) {
             return "T";
         } else {
-            if (forwardX < 0 || forwardY < 0 || forwardY > arenaY || forwardX > arenaX || [forwardX][forwardY] != null){
+            if (forwardX < 0 || forwardY < 0 || forwardY >= arenaY || forwardX >= arenaX || [forwardX][forwardY] != null){
                 return "R";
             } else {
                 String[] commands = new String[]{"F", "F", "R"};
