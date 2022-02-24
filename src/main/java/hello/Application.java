@@ -79,21 +79,21 @@ public class Application {
 
         switch (me.direction) {
             case "N":
-                fromY = me.y;
-                toY = me.y + 3;
-                fromX = me.x;
-                toX = me.x;
-                if (toY > arenaY) {
-                    toY = arenaY;
-                }
-                break;
-            case "S":
                 fromY = me.y - 3;
                 toY = me.y;
                 fromX = me.x;
                 toX = me.x;
                 if (fromY < 0) {
                     fromY = 0;
+                }
+                break;
+            case "S":
+                fromY = me.y;
+                toY = me.y + 3;
+                fromX = me.x;
+                toX = me.x;
+                if (toY > arenaY) {
+                    toY = arenaY;
                 }
                 break;
             case "E":
@@ -123,7 +123,7 @@ public class Application {
                         someoneExists = true;
                     }
                 } catch (Exception ex) {
-
+                    someoneExists = false;
                 }
             }
         }
