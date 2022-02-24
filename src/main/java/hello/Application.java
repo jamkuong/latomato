@@ -141,23 +141,28 @@ public class Application {
             }
         }
 
-        System.out.println(getHighestState(arenaUpdate.arena.state, selfKey));
-        if (me.wasHit) {
-            if (forwardX < 0 || forwardY < 0 || forwardY >= arenaY || forwardX >= arenaX || arena[forwardX][forwardY] != null){
-                return "R";
+        try {
+            if (me.wasHit) {
+                if (forwardX < 0 || forwardY < 0 || forwardY >= arenaY || forwardX >= arenaX || arena[forwardX][forwardY] != null) {
+                    return "R";
+                } else {
+                    return "F";
+                }
+            } else if (someoneExists) {
+                return "T";
             } else {
-                return "F";
+                if (forwardX < 0 || forwardY < 0 || forwardY >= arenaY || forwardX >= arenaX || arena[forwardX][forwardY] != null) {
+                    return "R";
+                } else {
+                    String[] commands = new String[]{"F", "F", "R"};
+                    int i = new Random().nextInt(3);
+                    return commands[i];
+                }
             }
-        } else if (someoneExists) {
-            return "T";
-        } else {
-            if (forwardX < 0 || forwardY < 0 || forwardY >= arenaY || forwardX >= arenaX || arena[forwardX][forwardY] != null){
-                return "R";
-            } else {
-                String[] commands = new String[]{"F", "F", "R"};
-                int i = new Random().nextInt(3);
-                return commands[i];
-            }
+        } catch {
+            String[] commands = new String[]{"F", "F", "R"};
+            int i = new Random().nextInt(3);
+            return commands[i];
         }
     }
 
