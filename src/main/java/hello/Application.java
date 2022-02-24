@@ -72,7 +72,6 @@ public class Application {
             arena[ps.x][ps.y] = entry.getKey();
         }
 
-        boolean facingX = true;
         Integer fromX = 0;
         Integer fromY = 0;
         Integer toX = 0;
@@ -80,16 +79,6 @@ public class Application {
 
         switch (me.direction) {
             case "N":
-                facingX = false;
-                fromY = me.y;
-                toY = me.y + 2;
-                fromX = me.x;
-                toX = me.x;
-                if (toY > arenaY) {
-                    toY = arenaY;
-                }
-                break;
-            case "S":
                 fromY = me.y - 2;
                 toY = me.y;
                 fromX = me.x;
@@ -98,17 +87,16 @@ public class Application {
                     fromY = 0;
                 }
                 break;
-            case "E":
+            case "S":
                 fromY = me.y;
-                toY = me.y;
+                toY = me.y + 2;
                 fromX = me.x;
-                toX = me.x + 2;
-                if (fromX > arenaX) {
-                    fromX = arenaX;
+                toX = me.x;
+                if (toY > arenaY) {
+                    toY = arenaY;
                 }
-                facingX = true;
                 break;
-            case "W":
+            case "E":
                 fromY = me.y;
                 toY = me.y;
                 fromX = me.x - 2;
@@ -116,7 +104,15 @@ public class Application {
                 if (fromX < 0) {
                     fromX = 0;
                 }
-                facingX = true;
+                break;
+            case "W":
+                fromY = me.y;
+                toY = me.y;
+                fromX = me.x;
+                toX = me.x + 2;
+                if (fromX > arenaX) {
+                    fromX = arenaX;
+                }
                 break;
         }
         boolean someoneExists = false;
