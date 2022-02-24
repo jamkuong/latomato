@@ -159,7 +159,7 @@ public class Application {
                     return commands[i];
                 }
             }
-        } catch {
+        } catch (Exception ex) {
             String[] commands = new String[]{"F", "F", "R"};
             int i = new Random().nextInt(3);
             return commands[i];
