@@ -6,6 +6,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.*;
 import java.util.Map;
 import java.util.Random;
 
@@ -60,12 +61,14 @@ public class Application {
         Integer arenaY = arenaUpdate.arena.dims.get(1);
 
         String[][] arena = new String[arenaX][arenaY];
+        String selfKey = "";
 
         PlayerState me = new PlayerState();
 
         for (Map.Entry<String, PlayerState> entry : arenaUpdate.arena.state.entrySet()) {
             if (entry.getKey().equals(arenaUpdate._links.self.href)) {
                 me = entry.getValue();
+                selfKey = entry.getKey();
             }
 
             PlayerState ps = entry.getValue();
@@ -76,6 +79,8 @@ public class Application {
         Integer fromY = 0;
         Integer toX = 0;
         Integer toY = 0;
+        Integer forwardX = 0;
+        Integer forwardY = 0;
 
         switch (me.direction) {
             case "N":
@@ -86,6 +91,8 @@ public class Application {
                 if (fromY < 0) {
                     fromY = 0;
                 }
+                forwardX = me.x;
+                forwardY = me.y - 1;
                 break;
             case "S":
                 fromY = me.y;
@@ -95,6 +102,8 @@ public class Application {
                 if (toY > arenaY) {
                     toY = arenaY;
                 }
+                forwardX = me.x;
+                forwardY = me.y + 1;
                 break;
             case "E":
                 fromY = me.y;
@@ -104,6 +113,8 @@ public class Application {
                 if (toX > arenaX) {
                     toX = arenaX;
                 }
+                forwardX = me.x + 1;
+                forwardY = me.y;
                 break;
             case "W":
                 fromY = me.y;
@@ -113,6 +124,8 @@ public class Application {
                 if (fromX < 0) {
                     fromX = 0;
                 }
+                forwardX = me.x - 1;
+                forwardY = me.y;
                 break;
         }
         boolean someoneExists = false;
@@ -128,10 +141,13 @@ public class Application {
             }
         }
 
+        System.out.println(getHighestState(arenaUpdate.arena.state, selfKey));
         if (me.wasHit) {
-            String[] commands = new String[]{"F", "F", "F", "F", "R", "R", "L"};
-            int i = new Random().nextInt(7);
-            return commands[i];
+            if (forwardX < 0 || forwardY < 0 || arena[forwardX][forwardY] != null){
+                return "R";
+            } else {
+                return "F";
+            }
         } else if (someoneExists) {
             return "T";
         } else {
@@ -141,5 +157,21 @@ public class Application {
         }
     }
 
+    public List<Integer> getHighestState(Map<String, PlayerState> state, String selfKey){
+        List<Integer> position = new ArrayList<>();
+        Integer highest = 0;
+        for (Map.Entry<String, PlayerState> entry : state.entrySet()) {
+            PlayerState ps = entry.getValue();
+            if (!entry.getKey().equals(selfKey)) {
+                if (ps.score >= highest) {
+                    highest = ps.score;
+                    position = new ArrayList<>();
+                    position.add(ps.x);
+                    position.add(ps.y);
+                }
+            }
+        }
+        return position;
+    }
 }
 
