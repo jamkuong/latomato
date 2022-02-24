@@ -154,14 +154,14 @@ public class Application {
                 if (forwardX < 0 || forwardY < 0 || forwardY >= arenaY || forwardX >= arenaX || arena[forwardX][forwardY] != null) {
                     return "R";
                 } else {
-                    String[] commands = new String[]{"F", "F", "R"};
-                    int i = new Random().nextInt(3);
+                    String[] commands = new String[]{"F", "F", "R", "L"};
+                    int i = new Random().nextInt(4);
                     return commands[i];
                 }
             }
         } catch (Exception ex) {
-            String[] commands = new String[]{"F", "F", "R"};
-            int i = new Random().nextInt(3);
+            String[] commands = new String[]{"F", "F", "R", "L"};
+            int i = new Random().nextInt(4);
             return commands[i];
         }
     }
