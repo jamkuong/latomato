@@ -129,7 +129,7 @@ public class Application {
         }
 
         String[] commands = new String[]{"F", "F", "F", "F", "R", "L"};
-        int i = new Random().nextInt(4);
+        int i = new Random().nextInt(6);
         if (me.wasHit) {
             return commands[i];
         } else if (someoneExists) {
