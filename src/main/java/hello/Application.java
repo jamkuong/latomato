@@ -99,19 +99,19 @@ public class Application {
             case "E":
                 fromY = me.y;
                 toY = me.y;
-                fromX = me.x - 3;
-                toX = me.x;
-                if (fromX < 0) {
-                    fromX = 0;
+                fromX = me.x;
+                toX = me.x + 3;
+                if (toX > arenaX) {
+                    toX = arenaX;
                 }
                 break;
             case "W":
                 fromY = me.y;
                 toY = me.y;
-                fromX = me.x;
-                toX = me.x + 3;
-                if (toX > arenaX) {
-                    toX = arenaX;
+                fromX = me.x - 3;
+                toX = me.x;
+                if (fromX < 0) {
+                    fromX = 0;
                 }
                 break;
         }
