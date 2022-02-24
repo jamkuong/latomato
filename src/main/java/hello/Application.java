@@ -79,15 +79,6 @@ public class Application {
 
         switch (me.direction) {
             case "N":
-                fromY = me.y;
-                toY = me.y + 3;
-                fromX = me.x;
-                toX = me.x;
-                if (toY > arenaY) {
-                    toY = arenaY;
-                }
-                break;
-            case "S":
                 fromY = me.y - 3;
                 toY = me.y;
                 fromX = me.x;
@@ -96,22 +87,31 @@ public class Application {
                     fromY = 0;
                 }
                 break;
-            case "E":
+            case "S":
                 fromY = me.y;
-                toY = me.y;
+                toY = me.y + 3;
                 fromX = me.x;
-                toX = me.x + 3;
-                if (fromX > arenaX) {
-                    fromX = arenaX;
+                toX = me.x;
+                if (toY > arenaY) {
+                    toY = arenaY;
                 }
                 break;
-            case "W":
+            case "E":
                 fromY = me.y;
                 toY = me.y;
                 fromX = me.x - 3;
                 toX = me.x;
                 if (fromX < 0) {
                     fromX = 0;
+                }
+                break;
+            case "W":
+                fromY = me.y;
+                toY = me.y;
+                fromX = me.x;
+                toX = me.x + 3;
+                if (fromX > arenaX) {
+                    fromX = arenaX;
                 }
                 break;
         }
@@ -128,7 +128,7 @@ public class Application {
             }
         }
 
-        String[] commands = new String[]{"F", "R", "L", "T"};
+        String[] commands = new String[]{"F", "R", "L"};
         int i = new Random().nextInt(4);
         if (someoneExists) {
             return "T";
