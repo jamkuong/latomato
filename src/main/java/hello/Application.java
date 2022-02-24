@@ -128,9 +128,11 @@ public class Application {
             }
         }
 
-        String[] commands = new String[]{"F", "R", "L"};
+        String[] commands = new String[]{"F", "F", "F", "F", "R", "L"};
         int i = new Random().nextInt(4);
-        if (someoneExists) {
+        if (me.wasHit) {
+            return commands[i];
+        } else if (someoneExists) {
             return "T";
         }
         return commands[i];
