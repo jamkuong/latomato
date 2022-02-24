@@ -55,7 +55,7 @@ public class Application {
 
     @PostMapping("/**")
     public String index(@RequestBody ArenaUpdate arenaUpdate) {
-        System.out.println(arenaUpdate._links.self.href);
+        System.out.println(arenaUpdate);
         Integer arenaX = arenaUpdate.arena.dims.get(0);
         Integer arenaY = arenaUpdate.arena.dims.get(1);
 
