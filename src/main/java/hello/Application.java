@@ -79,15 +79,6 @@ public class Application {
 
         switch (me.direction) {
             case "N":
-                fromY = me.y - 2;
-                toY = me.y;
-                fromX = me.x;
-                toX = me.x;
-                if (fromY < 0) {
-                    fromY = 0;
-                }
-                break;
-            case "S":
                 fromY = me.y;
                 toY = me.y + 2;
                 fromX = me.x;
@@ -96,22 +87,31 @@ public class Application {
                     toY = arenaY;
                 }
                 break;
-            case "E":
-                fromY = me.y;
+            case "S":
+                fromY = me.y - 2;
                 toY = me.y;
-                fromX = me.x - 2;
+                fromX = me.x;
                 toX = me.x;
-                if (fromX < 0) {
-                    fromX = 0;
+                if (fromY < 0) {
+                    fromY = 0;
                 }
                 break;
-            case "W":
+            case "E":
                 fromY = me.y;
                 toY = me.y;
                 fromX = me.x;
                 toX = me.x + 2;
                 if (fromX > arenaX) {
                     fromX = arenaX;
+                }
+                break;
+            case "W":
+                fromY = me.y;
+                toY = me.y;
+                fromX = me.x - 2;
+                toX = me.x;
+                if (fromX < 0) {
+                    fromX = 0;
                 }
                 break;
         }
