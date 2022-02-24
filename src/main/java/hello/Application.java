@@ -128,14 +128,17 @@ public class Application {
             }
         }
 
-        String[] commands = new String[]{"F", "F", "F", "F", "R", "L"};
-        int i = new Random().nextInt(6);
         if (me.wasHit) {
+            String[] commands = new String[]{"F", "F", "F", "F", "R", "R", "L"};
+            int i = new Random().nextInt(7);
             return commands[i];
         } else if (someoneExists) {
             return "T";
+        } else {
+            String[] commands = new String[]{"F", "F", "F", "R", "R", "L"};
+            int i = new Random().nextInt(6);
+            return commands[i];
         }
-        return commands[i];
     }
 
 }
