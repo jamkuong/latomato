@@ -80,7 +80,7 @@ public class Application {
         switch (me.direction) {
             case "N":
                 fromY = me.y;
-                toY = me.y + 2;
+                toY = me.y + 3;
                 fromX = me.x;
                 toX = me.x;
                 if (toY > arenaY) {
@@ -88,7 +88,7 @@ public class Application {
                 }
                 break;
             case "S":
-                fromY = me.y - 2;
+                fromY = me.y - 3;
                 toY = me.y;
                 fromX = me.x;
                 toX = me.x;
@@ -100,7 +100,7 @@ public class Application {
                 fromY = me.y;
                 toY = me.y;
                 fromX = me.x;
-                toX = me.x + 2;
+                toX = me.x + 3;
                 if (fromX > arenaX) {
                     fromX = arenaX;
                 }
@@ -108,7 +108,7 @@ public class Application {
             case "W":
                 fromY = me.y;
                 toY = me.y;
-                fromX = me.x - 2;
+                fromX = me.x - 3;
                 toX = me.x;
                 if (fromX < 0) {
                     fromX = 0;
@@ -118,8 +118,12 @@ public class Application {
         boolean someoneExists = false;
         for (int i = fromX; i <= toX; i++) {
             for (int j = fromY; j <= toY; j++) {
-                if (arena[i][j] != null && !arena[i][j].equals(arenaUpdate._links.self.href)) {
-                    someoneExists = true;
+                try {
+                    if (arena[i][j] != null && !arena[i][j].equals(arenaUpdate._links.self.href)) {
+                        someoneExists = true;
+                    }
+                } catch (Exception ex) {
+
                 }
             }
         }
