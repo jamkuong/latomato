@@ -154,8 +154,8 @@ public class Application {
             if (forwardX < 0 || forwardY < 0 || forwardY > arenaY || forwardX > arenaX || [forwardX][forwardY] != null){
                 return "R";
             } else {
-                String[] commands = new String[]{"F", "F", "F", "R", "R", "L"};
-                int i = new Random().nextInt(6);
+                String[] commands = new String[]{"F", "F", "R"};
+                int i = new Random().nextInt(3);
                 return commands[i];
             }
         }
